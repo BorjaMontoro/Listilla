@@ -38,9 +38,8 @@ public class MainActivity extends AppCompatActivity {
         records.add( new Record(33,"Manolo") );
         records.add( new Record(12,"Pepe") );
         records.add( new Record(42,"Laura") );
-        int sisisi;
         // Inicialitzem l'ArrayAdapter amb el layout pertinen
-        /*adapter = new ArrayAdapter<Record>( this, R.layout.list_item, records )
+        adapter = new ArrayAdapter<Record>( this, R.layout.list_item, records )
         {
             @Override
             public View getView(int pos, View convertView, ViewGroup container)
@@ -73,6 +72,6 @@ public class MainActivity extends AppCompatActivity {
                 // notificar l'adapter dels canvis al model
                 adapter.notifyDataSetChanged();
             }
-        });*/
+        });
     }
 }
