@@ -10,7 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-
+    int numrandintent;
+    int sacarpersona;
+    String[] nombres={"José", "Miguel", "Antonio","Borja","Erik","Alejandro","Alex","Cristian","Marc","Laia","Hugo","Pol","Alba","Andres","Cesar"};
     // Model: Record (intents=puntuació, nom)
     class Record {
         public int intents;
@@ -67,7 +69,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 for (int i=0;i<500;i++) {
-                    records.add(new Record(100, "Anonymous"));
+                    numrandintent=(int)(Math.random()*(25-1+1)+1);
+                    sacarpersona=(int)(Math.random()*(14+1));
+                    records.add(new Record(numrandintent, nombres[sacarpersona]));
                 }
                 // notificar l'adapter dels canvis al model
                 adapter.notifyDataSetChanged();
