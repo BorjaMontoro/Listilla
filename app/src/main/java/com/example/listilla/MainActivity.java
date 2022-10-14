@@ -1,13 +1,17 @@
 package com.example.listilla;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class MainActivity extends AppCompatActivity {
     int numrandintent;
@@ -18,9 +22,12 @@ public class MainActivity extends AppCompatActivity {
         public int intents;
         public String nom;
 
-        public Record(int _intents, String _nom ) {
-            intents = _intents;
-            nom = _nom;
+        public Record(int intents, String nom ) {
+            this.intents = intents;
+            this.nom = nom;
+        }
+        public int getIntents(){
+            return intents;
         }
     }
     // Model = Taula de records: utilitzem ArrayList
@@ -63,6 +70,16 @@ public class MainActivity extends AppCompatActivity {
         ListView lv = (ListView) findViewById(R.id.recordsView);
         lv.setAdapter(adapter);
 
+        Button bot = (Button) findViewById(R.id.ordenar);
+        bot.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onClick(View v) {
+                Collections.sort(records, Comparator.comparing(Record::getIntents).thenComparing(Record::getIntents));
+                // notificar al adapter ela canvis al model
+                adapter.notifyDataSetChanged();
+            }
+        });
         // botó per afegir entrades a la ListView
         Button b = (Button) findViewById(R.id.button);
         b.setOnClickListener(new View.OnClickListener() {
